@@ -6,7 +6,7 @@ CREATE TABLE users
     password VARCHAR(100) NOT NULL,
     biography VARCHAR(1000),
     phone_number VARCHAR(13),
-    mobil_number VARCHAR(13),
+    mobile_number VARCHAR(13),
     is_deleted TINYINT(1) NOT NULL DEFAULT '0',
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     update_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -33,9 +33,9 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE posts
 (
     id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    chat_id INT(11) NOT NULL REFERENCES chats(id),
+    chat_id INT(11) NOT NULL,
     post_content VARCHAR(1000) NOT NULL,
-    post_file VARCHAR(100),
+    post_file_name VARCHAR(100),
     is_deleted TINYINT(1) NOT NULL DEFAULT '0',
     posted_at DATETIME  NULL DEFAULT CURRENT_TIMESTAMP,
     post_user_id INT(11) NOT NULL,
@@ -50,16 +50,17 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE tasks
 (
     id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    chat_id INT(11) NOT NULL REFERENCES chats(id),
+    chat_id INT(11) NOT NULL,
     task_user_id INT(11) NOT NULL,
     task_content VARCHAR(1000) NOT NULL,
-    task_limit_date DATETIME NOT NULL,
+    task_limit_date DATETIME,
     is_task_completed TINYINT(1) NOT NULL DEFAULT '0',
     is_deleted TINYINT(1) NOT NULL DEFAULT '0',
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    create_user_id INT(11) NOT NULL REFERENCES users(id),
+    create_user_id INT(11) NOT NULL,
     update_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    update_user_id INT(11) NOT NULL REFERENCES users(id),
+    update_user_id INT(11) NOT NULL,
+    FOREIGN KEY(chat_id) REFERENCES chats(id),
     FOREIGN KEY(task_user_id) REFERENCES users(id),
     FOREIGN KEY(create_user_id) REFERENCES users(id),
     FOREIGN KEY(update_user_id) REFERENCES users(id)
