@@ -69,10 +69,11 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE join_users
 (
-    user_id INT(11) NOT NULL PRIMARY KEY,
-    chat_id INT(11) NOT NULL PRIMARY KEY,
+    user_id INT(11) NOT NULL,
+    chat_id INT(11) NOT NULL,
     join_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(user_id) REFERENCES users(id),
-    FOREIGN KEY(chat_id) REFERENCES chats(id)
+    FOREIGN KEY(chat_id) REFERENCES chats(id),
+    PRIMARY KEY(user_id,chat_id)
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
