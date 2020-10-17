@@ -4,7 +4,8 @@
 
 ```
 quelcode-php
-├── db ├──db-challenge1・・・・・・・・・・ER図を作成
+├── db 
+│   ├──db-challenge1・・・・・・・・・・ER図を作成
 ├── mysql5.7
 │   ├── mysql .................. 起動すると作られる。データ永続化用
 │   ├── mysqlvolume ............ mysqlコンテナにマウントされる。ホストとのファイル受け渡し用
